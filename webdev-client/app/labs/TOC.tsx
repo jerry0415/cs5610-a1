@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function TOC() {
   return (
-    <>
-      <p>Jerry — build, learn, ship.</p>
+    <div id="wd-toc">
+      <p>Mingxuan Liu — build, learn, ship.</p>
       <ul>
         <li>
           <Link href="/labs">Labs</Link>
@@ -29,6 +29,6 @@ export default function TOC() {
           </Link>
         </li>
       </ul>
-    </>
+    </div>
   );
 }

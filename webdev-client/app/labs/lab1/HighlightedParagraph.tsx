@@ -47,7 +47,7 @@ export default function HighlightedParagraphLab() {
         borderRadius="0px"
       />
       <HighlightedParagraph
-        text="Hi, I'm Jerry from Vancouver. I enjoy cycling and hiking, and I like cooking dinners when I'm home. My favorite courses are anything related to robotics."
+        text="Hi, I'm Mingxuan Liu from Vancouver. I enjoy cycling and hiking, and I like cooking dinners when I'm home. My favorite courses are anything related to robotics."
         backgroundColor="yellow"
         borderColor="blue"
         borderWidth="10px"

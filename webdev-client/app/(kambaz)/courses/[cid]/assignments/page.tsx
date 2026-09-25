@@ -1,4 +1,4 @@
-import AssignmentItem from "./AssignmentItem.tsx";
+import AssignmentItem from "./AssignmentItem";
 
 export default async function Assignments({
   params,

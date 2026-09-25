@@ -68,7 +68,7 @@ export default function HighlightedBoxLab() {
         borderWidth={2}
         borderRadius={20}
       >
-        <h4>Jerry Liu</h4>
+        <h4>Mingxuan Liu Liu</h4>
         <ul>
           <li>comfortable with react</li>
           <li>knowing database operations</li>

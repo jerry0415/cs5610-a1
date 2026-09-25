@@ -8,7 +8,7 @@ export default function AnchorTag() {
       </a>{" "}
       to get dummy text
       <br />
-      <a href="https://github.com/jannunzi" id="wd-github">
+      <a href="https://github.com/jerry0415/cs5610-a1" id="wd-github">
         GitHub
       </a>
       <br />

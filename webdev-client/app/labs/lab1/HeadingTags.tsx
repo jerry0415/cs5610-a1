@@ -30,8 +30,8 @@ export default function HeadingTags() {
       </div>
       <div id="wd-your-heading">
         <h4>
-          <span id="wd-your-span">Hi</span>, I am Jerry a CS student intereted
-          in web development!
+          <span id="wd-your-span">Hi</span>, I am Mingxuan Liu a CS student
+          CS5610-09 intereted in web development!
         </h4>
       </div>
     </div>
