@@ -1,31 +1,40 @@
 import Link from "next/link";
 
+const inputClass =
+  "mb-2 w-full rounded border border-neutral-300 bg-white px-3 py-2 text-sm";
+
 export default function Signup() {
   return (
-    <div id="wd-signup-screen">
-      <h3>Sign up</h3>
+    <div id="wd-signup-screen" className="max-w-sm">
+      <h1 className="mb-3 text-2xl font-semibold">Sign up</h1>
       <input
         placeholder="username"
-        className="wd-username"
+        className={`wd-username ${inputClass}`}
         defaultValue="ada"
       />
-      <br />
       <input
         placeholder="password"
         type="password"
-        className="wd-password"
+        className={`wd-password ${inputClass}`}
         defaultValue="123"
       />
-      <br />
       <input
         placeholder="verify password"
         type="password"
-        className="wd-password-verify"
+        className={`wd-password-verify ${inputClass}`}
       />
-      <br />
-      <Link href="/account/profile">Sign up</Link>
-      <br />
-      <Link href="/account/signin">Sign in</Link>
+      <Link
+        href="/account/profile"
+        className="mb-2 block w-full rounded bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white no-underline hover:bg-blue-700"
+      >
+        Sign up
+      </Link>
+      <Link
+        href="/account/signin"
+        className="text-sm text-red-600 no-underline hover:underline"
+      >
+        Sign in
+      </Link>
     </div>
   );
 }
