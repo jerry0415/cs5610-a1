@@ -15,6 +15,7 @@ export default function House() {
     owners: ["Alice", "Bob"],
   };
   console.log(house);
+  const houseWithoutGarage: { garage?: { cars: number } } = {};
   return (
     <div id="wd-house">
       <h4>House</h4>
@@ -22,10 +23,14 @@ export default function House() {
       {house.bedrooms}
       <h5>bathrooms</h5>
       {house.bathrooms}
+      <h5>owners</h5>
+      {house.owners.join(", ")}
       <h5>yearBuilt</h5>
       {house.yearBuilt}
       <h5>garage.cars</h5>
       {house.garage.cars}
+      <h5>Optional chaining</h5>
+      house.garage?.cars ?? 0 = {houseWithoutGarage.garage?.cars ?? 0}
       <h5>Number of properties</h5>
       {Object.keys(house).length}
       <h5>Data</h5>

@@ -29,6 +29,7 @@ import ClientComponentDemo from "./ClientComponentDemo";
 import ServerComponentDemo from "./ServerComponentDemo";
 import PathParameters from "./PathParameters";
 import TodoList from "./todos/TodoList";
+import Add from "./Add";
 
 export default function Lab3() {
   return (
@@ -65,6 +66,8 @@ export default function Lab3() {
       <ServerComponentDemo />
       <PathParameters />
       <TodoList />
+      <Add a={1} b={2} />
+      <Add a={10} b={20} />
     </div>
   );
 }
