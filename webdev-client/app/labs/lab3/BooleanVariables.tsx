@@ -10,8 +10,9 @@ export default function BooleanVariables() {
   let true5 = floatingPointNumber !== 321.432;
   let false3 = numberVariable < 100;
   let true6 = "Hello" === "Hello";
-  console.log('"123" == 123', "123" == 123);
-  console.log('"123" === 123', "123" === 123);
+  const textOrNumber: Array<string | number> = ["123", 123];
+  console.log('"123" == 123', textOrNumber[0] == textOrNumber[1]);
+  console.log('"123" === 123', textOrNumber[0] === textOrNumber[1]);
   return (
     <div id="wd-boolean-variables">
       <h4>Boolean Variables</h4>
