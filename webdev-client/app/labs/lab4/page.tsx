@@ -11,6 +11,7 @@ import ObjectStateVariable from "./ObjectStateVariable";
 import ArrayStateVariable from "./ArrayStateVariable";
 import ProfileForm from "./profile/ProfileForm";
 import ZustandTodoList from "./zustand/ZustandTodoList";
+import UrlEncoding from "./UrlEncoding";
 
 export default function Lab4() {
   const theFunction = (message: string) => {
@@ -42,6 +43,7 @@ export default function Lab4() {
       <ArrayStateVariable />
       <ProfileForm />
       <ZustandTodoList />
+      <UrlEncoding />
     </div>
   );
 }
