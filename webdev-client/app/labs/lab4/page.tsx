@@ -10,6 +10,7 @@ import DateStateVariable from "./DateStateVariable";
 import ObjectStateVariable from "./ObjectStateVariable";
 import ArrayStateVariable from "./ArrayStateVariable";
 import ProfileForm from "./profile/ProfileForm";
+import ZustandTodoList from "./zustand/ZustandTodoList";
 
 export default function Lab4() {
   const theFunction = (message: string) => {
@@ -40,6 +41,7 @@ export default function Lab4() {
       <ObjectStateVariable />
       <ArrayStateVariable />
       <ProfileForm />
+      <ZustandTodoList />
     </div>
   );
 }
