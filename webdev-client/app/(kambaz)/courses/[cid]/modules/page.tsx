@@ -1,16 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import { useParams } from "next/navigation";
 import Module from "./Module";
 import Lesson from "./Lesson";
 import ModulesControls from "./ModulesControls";
-import * as db from "../../../database";
+import { useModulesStore } from "../../../store/modulesStore";
 
 export default function Modules() {
   const { cid } = useParams();
   const courseId = typeof cid === "string" ? cid : "";
-  const [modules] = useState(db.modules);
+
+  // Reading from store
+  const modules = useModulesStore((state) => state.modules);
   const courseModules = modules.filter((module) => module.course === courseId);
 
   return (
@@ -18,7 +19,7 @@ export default function Modules() {
       <ModulesControls />
       <ul id="wd-modules" className="m-0 list-none p-0">
         {courseModules.map((module) => (
-          <Module key={module._id} title={module.name}>
+          <Module key={module._id} moduleId={module._id} title={module.name}>
             {module.lessons?.map((lesson) => (
               <Lesson key={lesson._id} title={lesson.name} />
             ))}
