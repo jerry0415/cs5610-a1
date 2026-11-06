@@ -1,42 +1,54 @@
-import Link from "next/link";
+"use client";
 
-const inputClass =
-  "mb-2 w-full rounded border border-neutral-300 bg-white px-3 py-2 text-sm";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import * as db from "../../database";
+import { useAccountContext } from "../AccountContext";
 
 export default function Signin() {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
+  const { setCurrentUser } = useAccountContext();
+  const router = useRouter();
+
+  const signin = () => {
+    const user = db.users.find(
+      (u) =>
+        u.username === credentials.username &&
+        u.password === credentials.password
+    );
+    if (!user) return;
+    setCurrentUser(user);
+    router.push("/dashboard");
+  };
+
   return (
-    <div id="wd-signin-screen" className="max-w-sm">
-      <h1 className="mb-3 text-2xl font-semibold">Sign in</h1>
+    <div id="wd-signin-screen">
+      <h3>Sign in</h3>
       <input
-        id="wd-username"
         placeholder="username"
-        className={inputClass}
-        defaultValue="ada"
+        id="wd-username"
+        value={credentials.username}
+        onChange={(e) =>
+          setCredentials({ ...credentials, username: e.target.value })
+        }
       />
       <input
-        id="wd-password"
         placeholder="password"
         type="password"
-        className={inputClass}
-        defaultValue="123"
+        id="wd-password"
+        value={credentials.password}
+        onChange={(e) =>
+          setCredentials({ ...credentials, password: e.target.value })
+        }
       />
-      <input
-        id="wd-ai-signin-note"
-        placeholder="sample note"
-        className={inputClass}
-      />
-      <Link
-        id="wd-signin-btn"
-        href="/account/profile"
-        className="mb-2 block w-full rounded bg-blue-600 px-3 py-2 text-center text-sm font-medium text-white no-underline hover:bg-blue-700"
-      >
+      <button type="button" onClick={signin} id="wd-signin-btn">
         Sign in
-      </Link>
-      <Link
-        id="wd-signup-link"
-        href="/account/signup"
-        className="text-sm text-red-600 no-underline hover:underline"
-      >
+      </button>
+      <Link href="/account/signup" id="wd-signup-link">
         Sign up
       </Link>
     </div>
