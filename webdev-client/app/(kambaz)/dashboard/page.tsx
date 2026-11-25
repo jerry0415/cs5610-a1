@@ -1,18 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CourseCard from "./CourseCard";
 import {
   emptyCourse,
   useCoursesStore,
   type Course,
 } from "../store/coursesStore";
+import { useAccountContext } from "../account/AccountContext";
+import * as client from "../courses/client";
 
 export default function Dashboard() {
+  const { currentUser } = useAccountContext();
   const courses = useCoursesStore((state) => state.courses);
+  const setCourses = useCoursesStore((state) => state.setCourses);
   const addCourse = useCoursesStore((state) => state.addCourse);
   const updateCourse = useCoursesStore((state) => state.updateCourse);
+  const deleteCourse = useCoursesStore((state) => state.deleteCourse);
   const [course, setCourse] = useState<Course>(emptyCourse);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        setCourses(await client.findMyCourses());
+      } catch {
+        setCourses([]);
+      }
+    };
+    load();
+  }, [currentUser, setCourses]);
+
+  const onAddCourse = async () => {
+    const newCourse = await client.createCourse(course);
+    addCourse(newCourse);
+  };
+
+  const onUpdateCourse = async () => {
+    const saved = await client.updateCourse(course);
+    updateCourse(saved);
+  };
+
+  const onDeleteCourse = async (courseId: string) => {
+    await client.deleteCourse(courseId);
+    deleteCourse(courseId);
+  };
 
   return (
     <div id="wd-dashboard">
@@ -24,7 +55,7 @@ export default function Dashboard() {
           type="button"
           className="rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white"
           id="wd-add-new-course-click"
-          onClick={() => addCourse(course)}
+          onClick={onAddCourse}
         >
           Add
         </button>
@@ -32,7 +63,7 @@ export default function Dashboard() {
           type="button"
           className="rounded bg-yellow-400 px-3 py-1.5 text-sm font-medium"
           id="wd-update-course-click"
-          onClick={() => updateCourse(course)}
+          onClick={onUpdateCourse}
         >
           Update
         </button>
@@ -71,7 +102,12 @@ export default function Dashboard() {
         className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
       >
         {courses.map((c) => (
-          <CourseCard key={c._id} course={c} onEdit={() => setCourse(c)} />
+          <CourseCard
+            key={c._id}
+            course={c}
+            onEdit={() => setCourse(c)}
+            onDelete={() => onDeleteCourse(c._id)}
+          />
         ))}
       </div>
     </div>

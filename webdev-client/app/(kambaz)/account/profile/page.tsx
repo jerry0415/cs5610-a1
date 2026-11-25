@@ -3,11 +3,18 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAccountContext, type User } from "../AccountContext";
+import * as client from "../client";
 
 export default function Profile() {
   const [profile, setProfile] = useState<User | null>(null);
   const { currentUser, setCurrentUser } = useAccountContext();
   const router = useRouter();
+
+  const updateProfile = async () => {
+    if (!profile) return;
+    const user = await client.updateUser(profile);
+    setCurrentUser(user);
+  };
 
   useEffect(() => {
     if (!currentUser) {
@@ -17,7 +24,8 @@ export default function Profile() {
     setProfile(currentUser);
   }, [currentUser, router]);
 
-  const signout = () => {
+  const signout = async () => {
+    await client.signout();
     setCurrentUser(null);
     router.push("/account/signin");
   };
@@ -57,6 +65,9 @@ export default function Profile() {
         value={profile.role}
         onChange={(e) => setProfile({ ...profile, role: e.target.value })}
       />
+      <button type="button" onClick={updateProfile} id="wd-update-profile-btn">
+        Update
+      </button>
       <button type="button" onClick={signout} id="wd-signout-btn">
         Sign out
       </button>
