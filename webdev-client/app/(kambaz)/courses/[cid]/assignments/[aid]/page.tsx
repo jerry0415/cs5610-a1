@@ -1,5 +1,5 @@
 import Link from "next/link";
-import * as db from "../../../../database";
+import db from "../../../../database";
 
 export default async function AssignmentEditor({
   params,

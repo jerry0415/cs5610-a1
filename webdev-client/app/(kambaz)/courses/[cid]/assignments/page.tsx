@@ -1,6 +1,6 @@
 import { FaPlus, FaSearch } from "react-icons/fa";
 import AssignmentItem from "./AssignmentItem";
-import * as db from "../../../database";
+import db from "../../../database";
 
 export default async function Assignments({
   params,
